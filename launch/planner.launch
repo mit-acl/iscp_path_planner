@@ -1,0 +1,9 @@
+<launch>
+
+<!-- Start path planner for generating collision-free trajectories -->
+<node pkg="path_planner" type="path_planner" name="path_planner" output="screen" />
+
+<!-- Start path planner for generating collision-free trajectories -->
+<node pkg="path_planner" type="simple_path_plan.py" name="simple_path_planner" output="screen" />
+
+</launch>

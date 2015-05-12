@@ -1,0 +1,8 @@
+1) Remove any hard-coded values, especially the room/pole bounds
+2) Clean up the code by making the path_planner class single-vehicle specific
+3) Need ability to stop all the vehicles at once if something bad happens,
+	like one of the vehicles isn't tracking its trajectory properly
+4) Need ability to asynchronously give commands, accounting for currently
+	planned vehicle trajectories.
+5) Implement velocity and jerk scaling 
+	(currently we are only doing acceleration scaling)
