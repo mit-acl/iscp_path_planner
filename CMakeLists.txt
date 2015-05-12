@@ -46,4 +46,5 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME} src/main.cpp src/path_planner.cpp src/RosWrapper.cpp src/pathplannerarray.cpp)
+add_dependencies(${PROJECT_NAME} acl_msgs_generate_messages_cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} mosek64)
