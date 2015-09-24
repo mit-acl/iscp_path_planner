@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from QtWidgetWindow import QtWidgetWindow
 import roslib
-roslib.load_manifest('quad_control')
+roslib.load_manifest('iscp_path_planner')
 import rospy
 import sys, random
 
@@ -17,7 +17,7 @@ import threading
 
 import matplotlib.animation as animation
 from geometry_msgs.msg import PoseStamped
-from quad_control.msg import PathArray
+from acl_msgs.msg import QuadPathArray as PathArray
 #import threading
 from std_msgs.msg import Int8
 from matplotlib.widgets import CheckButtons

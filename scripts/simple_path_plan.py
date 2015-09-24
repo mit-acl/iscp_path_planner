@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from path_planner.srv import *
 from geometry_msgs.msg import Vector3Stamped
-from path_planner.msg import Trajectory
+from acl_msgs.msg import Trajectory
 from aclpy import utils
 import math
 

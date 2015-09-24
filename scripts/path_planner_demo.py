@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import roslib
-roslib.load_manifest('path_planner')
+roslib.load_manifest('iscp_path_planner')
 import rospy
 import sys
 import numpy as np
@@ -9,9 +9,16 @@ from visualization_msgs.msg import Marker
 from visualization_msgs.msg import MarkerArray
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Point
-from path_planner.msg import *
-from path_planner.srv import GenPath
-from path_planner import plot_trajectories
+from acl_msgs.msg import *
+from acl_msgs.msg import Waypoint
+from acl_msgs.msg import QuadGoal as Goal
+from acl_msgs.srv import MultiVehWaypoint
+from acl_msgs.srv import MultiVehTakeoffLand
+from acl_msgs.srv import MultiVehPreCompute
+from acl_msgs.srv import GenPath
+from acl_msgs.msg import QuadPathArray as PathArray
+from acl_msgs.msg import QuadPath as Path
+from iscp_path_planner import plot_trajectories
 #from quad_control.msg import Goal
 from geometry_msgs.msg import PoseStamped
 

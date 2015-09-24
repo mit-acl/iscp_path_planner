@@ -9,7 +9,7 @@ Created on October 3, 2014
 @email: markjcutler@gmail.com
 '''
 import roslib
-roslib.load_manifest('path_planner')
+roslib.load_manifest('iscp_path_planner')
 import rospy
 import numpy as np
 
@@ -24,16 +24,16 @@ from geometry_msgs.msg import PoseStamped
 import actionlib
 
 # custom imports
-from raven_rviz.msg import Waypoint
-from path_planner.msg import *
-from quad_control.msg import Goal
-from path_planner.srv import MultiVehWaypoint
-from path_planner.srv import MultiVehTakeoffLand
-from path_planner.srv import MultiVehPreCompute
-from path_planner.srv import GenPath
-from path_planner.msg import *
-from quad_control.msg import PathArray
-from quad_control.msg import Path
+from acl_msgs.msg import Trajectory
+from acl_msgs.msg import *
+from acl_msgs.msg import Waypoint
+from acl_msgs.msg import QuadGoal as Goal
+from acl_msgs.srv import MultiVehWaypoint
+from acl_msgs.srv import MultiVehTakeoffLand
+from acl_msgs.srv import MultiVehPreCompute
+from acl_msgs.srv import GenPath
+from acl_msgs.msg import QuadPathArray as PathArray
+from acl_msgs.msg import QuadPath as Path
 
 from aclpy import utils
 
@@ -180,19 +180,12 @@ def readFromFile (filename):
 class MultiVehicleWaypointServer:
 
     def __init__(self, veh):
-        self.server = rospy.Service('multi_vehicle_waypoint', MultiVehWaypoint, self.multi_vehicle_waypoint)
-        self.server2 = rospy.Service('multi_vehicle_takeoff_land', MultiVehTakeoffLand, self.multi_vehicle_takeoff_land)
-        self.server3 = rospy.Service('multi_vehicle_pre_compute', MultiVehPreCompute, self.multi_vehicle_pre_compute)
-
         self.veh = veh
         self.N = len(self.veh)
         self.numD = 2
-        
-        rospy.wait_for_service('/gen_path')
-        self.genPath = rospy.ServiceProxy('/gen_path', GenPath)
-
         self.current_goal = [Goal() for i in range(len(self.veh))]
         self.current_pose = [Pose() for i in range(len(self.veh))]
+
         self.pub_goal = []
         for i in range(self.N):
             self.goalSub = rospy.Subscriber(self.veh[i] + "/goal", Goal, self.goalCB)
@@ -200,6 +193,14 @@ class MultiVehicleWaypointServer:
             self.pub_goal.append(rospy.Publisher(self.veh[i] + '/goal', Goal, queue_size=1))
         self.pub_marker = rospy.Publisher('/RAVEN_world', MarkerArray, latch=True, queue_size=1)
         self.pub_path_array = rospy.Publisher('/projector_paths', PathArray, latch=True, queue_size=1)
+
+
+        self.server = rospy.Service('multi_vehicle_waypoint', MultiVehWaypoint, self.multi_vehicle_waypoint)
+        self.server2 = rospy.Service('multi_vehicle_takeoff_land', MultiVehTakeoffLand, self.multi_vehicle_takeoff_land)
+        self.server3 = rospy.Service('multi_vehicle_pre_compute', MultiVehPreCompute, self.multi_vehicle_pre_compute)
+        rospy.wait_for_service('/gen_path')
+        self.genPath = rospy.ServiceProxy('/gen_path', GenPath)
+        
 
 
     def goalCB(self, data):
@@ -412,7 +413,7 @@ if __name__ == '__main__':
     ns = rospy.get_namespace()
     try:
         rospy.init_node('multi_vehicle_path_server')
-        c = MultiVehicleWaypointServer(['BQ01s', 'BQ02', 'BQ03', 'BQ04s'])
+        c = MultiVehicleWaypointServer(['BQ01s', 'BQ02s', 'BQ03s', 'BQ04s'])
         rospy.spin()
 
     except rospy.ROSInterruptException:

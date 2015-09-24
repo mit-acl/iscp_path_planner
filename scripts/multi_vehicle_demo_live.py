@@ -8,7 +8,7 @@ Created on October 3, 2014
 @email: markjcutler@gmail.com
 '''
 import roslib
-roslib.load_manifest('path_planner')
+roslib.load_manifest('iscp_path_planner')
 import rospkg
 import rospy
 import numpy as np
@@ -17,9 +17,14 @@ import numpy as np
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Pose
 
-from path_planner.srv import MultiVehWaypoint
-from path_planner.srv import MultiVehTakeoffLand
-from path_planner.srv import MultiVehPreCompute
+from acl_msgs.msg import Waypoint
+from acl_msgs.msg import QuadGoal as Goal
+from acl_msgs.srv import MultiVehWaypoint
+from acl_msgs.srv import MultiVehTakeoffLand
+from acl_msgs.srv import MultiVehPreCompute
+from acl_msgs.srv import GenPath
+from acl_msgs.msg import QuadPathArray as PathArray
+from acl_msgs.msg import QuadPath as Path
 
 
 def send_waypoint(final_positions):
@@ -83,7 +88,7 @@ p = np.array([[[0.8, -2.5],[-0.7, -1.0],[-0.7, -4.0],[-2.2, -2.5]],
                [[0, -3],[0, -1.5],[0, 0],[0, -4.5]]])
 
 rospack = rospkg.RosPack()
-package_path = rospack.get_path('path_planner')
+package_path = rospack.get_path('iscp_path_planner')
 
 
 z = 0.75

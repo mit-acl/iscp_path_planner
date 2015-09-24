@@ -43,7 +43,7 @@ WALL 2   | y=3.73     <--+  ORIGIN             y=-8.05 |
 '''
 import rospy
 import roslib
-roslib.load_manifest('path_planner')
+roslib.load_manifest('iscp_path_planner')
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc
@@ -51,7 +51,7 @@ from matplotlib import rcParams
 rc('font', **{'family':'sans-serif', 'sans-serif':['Helvetica']})
 rc('text', usetex=True)
 rcParams['text.latex.preamble']=[r"\usepackage{amsmath}"]
-from path_planner.msg import Trajectory
+from acl_msgs.msg import Trajectory
 from geometry_msgs.msg import Vector3Stamped
 
 

@@ -20,17 +20,17 @@ To run projector:
 	/***********************************************************************/        
 	// c = MultiVehicleWaypointServer(['BQ01s', 'BQ02s', 'BQ03s', 'BQ04s'])
 	/***********************************************************************/
-	roslaunch quad_control control.launch veh:=BQ num:=01 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=02 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=03 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=04 sim:=1
+	roslaunch quad_control control.launch veh:=BQ num:=01 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=02 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=03 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=04 sim:=1 iscp:=1
 
 
 3. run path_server
-	rosrun path_planner multi_vehicle_path_server.py
+	rosrun iscp_path_planner multi_vehicle_path_server.py
 
 4. run demo trajectories
-	rosrun path_planner multi_vehicle_demo.py
+	rosrun iscp_path_planner multi_vehicle_demo.py
 
 
 
@@ -43,10 +43,10 @@ debugging using path.pdf
     install dvipng
 
 1. run path planner service 
-	rosrun path_planner path_planner
+	rosrun iscp_path_planner path_planner
 
 2. generate random test case
-	rosrun path_planner path_planner_single.py
+	rosrun iscp_path_planner path_planner_single.py
 
 3. path.pdf file should be generated in directory from which 3 is ran
 	square - starting position
@@ -62,17 +62,17 @@ debugging using raven_rviz
 	/***********************************************************************/        
 	// c = MultiVehicleWaypointServer(['BQ01s', 'BQ02s', 'BQ03s', 'BQ04s'])
 	/***********************************************************************/
-	roslaunch quad_control control.launch veh:=BQ num:=01 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=02 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=03 sim:=1
-	roslaunch quad_control control.launch veh:=BQ num:=04 sim:=1
+	roslaunch quad_control control.launch veh:=BQ num:=01 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=02 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=03 sim:=1 iscp:=1
+	roslaunch quad_control control.launch veh:=BQ num:=04 sim:=1 iscp:=1
 
 
 3. run path_server
-	rosrun path_planner multi_vehicle_path_server.py
+	rosrun iscp_path_planner multi_vehicle_path_server.py
 
 4. run path planner
-	rosrun path_planner path_planner
+	rosrun iscp_path_planner path_planner
 
 5. run demo trajectories
-	rosrun path_planner multi_vehicle_demo_live.py
+	rosrun iscp_path_planner multi_vehicle_demo_live.py
