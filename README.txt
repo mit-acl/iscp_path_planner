@@ -1,4 +1,20 @@
-launching multi-quad demo
+# Setup MOSEK #
+```
+cd ~
+wget http://download.mosek.com/stable/7.1.0.27/mosektoolslinux64x86.tar.bz2
+tar xvf mosektoolslinux64x86.tar.bz2
+```
+
+get liscense file mosek.lic and put it in the mosek folder.
+
+setup environment variable by adding the following lines to the `~/.bashrc`
+
+```
+export PATH=$HOME/mosek/7/tools/platform/linux64x86/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/mosek/7/tools/platform/linux64x86/bin:$LD_LIBRARY_PATH
+```
+
+# launching multi-quad demo
 
 [Optional]
 To run projector: 
